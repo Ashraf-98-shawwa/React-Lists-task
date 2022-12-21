@@ -1,4 +1,5 @@
 import Counter from "./components/counter";
+import Total from "./components/Total";
 import "./App.css";
 
 import React, { Component } from "react";
@@ -13,6 +14,7 @@ const counters = [
 export default class App extends Component {
   state = {
     counters,
+    total : 0
   };
 
   onIncrement = (id, steps = 1) => {
@@ -24,6 +26,8 @@ export default class App extends Component {
           }
           return item;
         }),
+
+        total: prevState.total + steps,
       };
     });
   };
@@ -40,6 +44,7 @@ export default class App extends Component {
           }
           return item;
         }),
+        total: prevState.total > 0 ? prevState.total - steps : prevState.total,
       };
     });
   };
@@ -55,6 +60,8 @@ export default class App extends Component {
             onIncrement={this.onIncrement}
           />
         ))}
+
+        <Total>Total = {this.state.total}</Total>
       </div>
     );
   }
