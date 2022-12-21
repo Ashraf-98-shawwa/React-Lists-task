@@ -13,7 +13,6 @@ const counters = [
 export default class App extends Component {
   state = {
     counters,
-    total : 0
   };
 
   onIncrement = (id, steps = 1) => {
@@ -26,7 +25,6 @@ export default class App extends Component {
           return item;
         }),
 
-        total: prevState.total + steps,
       };
     });
   };
